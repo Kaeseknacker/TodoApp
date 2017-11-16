@@ -3,14 +3,14 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
+
     ui->setupUi(this);
     connect(ui->addTaskButton, &QPushButton::clicked,
             QApplication::instance(), &QApplication::quit);
 }
 
-MainWindow::~MainWindow()
-{
+
+MainWindow::~MainWindow() {
     delete ui;
 }
