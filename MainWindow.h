@@ -14,6 +14,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void printMessage();
+    void addTask();
+
 private:
     Ui::MainWindow *ui;
 };
