@@ -6,7 +6,9 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow) {
+    ui(new Ui::MainWindow),
+    mTasks() //Initialisierung des Vectors
+{
 
     ui->setupUi(this);
     connect(ui->addTaskButton, &QPushButton::clicked,
@@ -22,7 +24,10 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::addTask() {
-    qDebug() << "User clicked on the Button!";
+    qDebug() << "Adding new task";
+    Task* task = new Task("Untitled task");
+    mTasks.append(task);
+    ui->tasksLayout->addWidget(task);
 }
 
 
