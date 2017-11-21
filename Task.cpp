@@ -2,6 +2,7 @@
 #include "ui_Task.h"
 
 #include <QInputDialog>
+#include <QDebug>
 
 
 Task::Task(const QString &name, QWidget *parent) :
@@ -11,6 +12,11 @@ Task::Task(const QString &name, QWidget *parent) :
     ui->setupUi(this);
     setName(name);
     connect(ui->editButton, &QPushButton::clicked, this, &Task::rename);
+
+    connect(ui->removeButton, &QPushButton::clicked, [this, name] {
+        qDebug() << "Trying to remove " << name;
+        this->emit removed(this);
+    });
 }
 
 

@@ -22,9 +22,9 @@ public:
 
 public slots:
 
-    void printMessage();
-
     void addTask();
+
+    void removeTask(Task* task);
 
 private:
 
