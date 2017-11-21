@@ -21,6 +21,9 @@ public:
 
     bool isCompleted() const;
 
+public slots:
+    void rename();
+
 private:
     Ui::Task *ui;
 };
