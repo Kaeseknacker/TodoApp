@@ -11,12 +11,18 @@ Task::Task(const QString &name, QWidget *parent) :
 
     ui->setupUi(this);
     setName(name);
+
     connect(ui->editButton, &QPushButton::clicked, this, &Task::rename);
 
-    connect(ui->removeButton, &QPushButton::clicked, [this, name] {
-        qDebug() << "Trying to remove " << name;
+    auto prettyName = [] (const QString& taskName) -> QString {
+        return "------- " + taskName.toUpper();
+    };
+    connect(ui->removeButton, &QPushButton::clicked, [this, name, prettyName] {
+        qDebug() << "Trying to remove" << prettyName(name);
         this->emit removed(this);
     });
+
+    connect(ui->checkBox, &QCheckBox::toggled, this, &Task::checked);
 }
 
 
@@ -51,4 +57,12 @@ void Task::rename() {
     if (ok && !value.isEmpty()) {
         setName(value);
     }
+}
+
+
+void Task::checked(bool checked) {
+    QFont font(ui->checkBox->font());
+    font.setStrikeOut(checked);
+    ui->checkBox->setFont(font);
+    emit statusChanged(this);
 }
